@@ -1,0 +1,56 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh; /*mevcut yükseklik alanının %100 ünü almasını sağlar*/
+    display: flex;/*containeri ortalamak için body ye flex verdik*/ 
+    background-color: blue;
+}
+
+.memory-game{
+    width: 640px;
+    height: 640px;
+    margin: auto; /*dikey ve yataydan boşluk olmus olacak*/
+    display: flex; /*öğeler sağa doğru container boyunca uzanacak*/
+    flex-wrap: wrap; /*öğelerin birden fazla sıraya yerleşmesini engeller*/
+    border: 2px solid lime;
+    perspective: 1000px; /*kutuları 3 boyutlu yapmak için*/
+}
+.memory-card{
+    width: calc(25% - 10px); /*panonun 3 sırası var */
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    
+}
+
+.memory-card:active{
+    transform: scale(.97); /*karta bastıgımızda tıklama efekti için yumusak bir geçiş verdik*/
+    transition: .2s;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+  }
+
+.front-face,
+.back-face{
+ width: 100%;
+ height: 100%;
+ padding: 20px;
+ position: absolute;
+ border-radius: 5px;
+ background: #1c7ccc;
+ backface-visibility: hidden; /*arkayüzü gizledik ki hareketi görebilelim*/
+ 
+}
+.front-face{
+    transform: rotateY(180deg); /*arka yüzü gizledikten sonra ön yüzü 180 derece döndürdük ve dönüş gerçekleşti*/
+}
+
+
